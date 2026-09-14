@@ -38,6 +38,25 @@ RFID Tag → RC522 Reader → Raspberry Pi Pico → UID Verification → Motor D
 
 An authorized RFID tag activates the motor, while an unauthorized tag keeps the ignition disabled. A manual stop switch is provided to stop the motor when required.
 
+
+### Block Diagram
+
+![System Block Diagram](Block_Diagram/block_diagram.png)
+
+The block diagram illustrates the overall system architecture and the interaction between the RFID reader, Raspberry Pi Pico, motor driver, and ignition system.
+
+### Flowchart
+
+![System Flowchart](Flowchart/flowchart.png)
+
+The flowchart represents the sequence of RFID authentication and ignition control.
+
+### Hardware Implementation
+
+![Hardware Setup](Hardware/hardware.png)
+
+The hardware prototype demonstrates the implemented RFID-based ignition control system.
+
 ## Results
 
 The RFID authentication and motor-control logic were verified through simulation and demonstrated using the hardware implementation.

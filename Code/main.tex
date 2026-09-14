@@ -1,0 +1,881 @@
+\documentclass[12pt,a4paper,oneside]{report}
+% ------------ Packages ------------
+\usepackage[margin=1in, paperwidth=8.3in, paperheight=11.7in]{geometry}
+\usepackage[colorlinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{listings}
+
+
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{float}
+
+
+% ------------ Hyperref Setup ------------
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black,
+    citecolor=black
+}
+
+% ------------ TOC Styling ------------
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftdotsep}{1.5}
+\setcounter{tocdepth}{2}
+
+% ------------ Page Border ------------
+\pgfpagesdeclarelayout{boxed}
+{
+  \edef\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions{logical pages=1}
+  \pgfpageslogicalpageoptions{1}{
+    border code=\pgfsetlinewidth{3pt}\pgfstroke,
+    border shrink=\pgfpageoptionborder,
+    resized width=0.9\pgfphysicalwidth,
+    resized height=0.9\pgfphysicalheight,
+    center=\pgfpoint{0.5\pgfphysicalwidth}{0.5\pgfphysicalheight}
+  }
+}
+\pgfpagesuselayout{boxed}
+
+
+% Dotted leaders
+\renewcommand{\cftdotsep}{1}
+
+
+\begin{document}
+\pagenumbering{arabic}
+
+
+
+% ------------ Title Page ------------
+\thispagestyle{empty}
+
+\begin{center}
+\includegraphics[width=16cm,height=3cm]{10999642-removebg-preview (1).png}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\\[0.3cm]
+\Large\textbf{Department of Electronics and Communication Engineering}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\LARGE
+\textbf{Automotive Electronics}\\
+\textbf{Course Project Report}\\
+\vspace{0.2cm}
+\end{center}
+\vspace{0.3cm}
+\begin{center}
+\Large
+\textbf{RFID Based Ignition System}
+\end{center}
+\begin{center}
+\Large \textbf{(Semester VI)}
+\end{center}
+\vspace{0cm}
+\begin{center}
+{\large \textbf{Course Code: 25EECC305}}
+\end{center}
+\vspace{0.7cm}
+
+\begin{center}
+{\Large \textbf{Submitted By}}
+\end{center}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tabular}{l c}
+\textbf{Name} & \textbf{SRN} \\[4pt]
+Parth Jadhav & 02FE23BEC083 \\
+Md. Danish Shamsher & 02FE23BEC112 \\
+Roopashree Pote & 02FE23BEC122 \\
+\end{tabular}
+\end{center}
+
+\vspace{0cm}
+
+\begin{center}
+
+\end{center}
+
+\vspace{0cm}
+
+\begin{center}
+\Large
+\textbf{Under the Guidance of}\\[0.1cm]
+Dr. Vijay Rayar\\
+[0.7cm]
+Department of Electronics and Communication Engineering \\ 
+KLE Technological University\\
+Dr. M. S. Sheshgiri Campus, Belagavi\\
+[0.7cm]
+\textbf{Academic Year: 2025 - 2026}
+\end{center}
+
+% ------------ Certificate Page ------------
+
+\newpage
+\thispagestyle{empty}
+
+\begin{center}
+\includegraphics[width=16cm,height=3cm]{10999642-removebg-preview (1).png}
+\end{center}
+
+\vspace{0.1cm}
+
+\begin{center}
+\color{brown}\textbf{KLE Technological University}\\
+Dr. M. S. Sheshgiri College of Engineering and Technology\\
+BELAGAVI--590008
+\end{center}
+
+\vspace{0.25cm}
+
+\begin{center}
+\Large{\color{violet}\textbf{CERTIFICATE}}
+\end{center}
+
+\vspace{0.25cm}
+
+\justify
+This is to certify that the project entitled
+\textbf{RFID Based Ignition System}
+is a bonafide work carried out by
+\textbf{Parth Jadhav [USN: 02FE23BEC083]
+Md. Danish Shamsher\allowbreak[USN: 02FE23BEC\allowbreak112] and
+Roopashree Pote[USN: 02FE23BEC\allowbreak122]}
+students of VI semester of KLE Technological University, Dr. M. S. Sheshgiri Campus,
+Belagavi, in partial fulfillment for the award of the degree of
+\textbf{Bachelor of Engineering} in the Department of
+\textbf{Electronics and Communication Engineering} during the academic year
+\textbf{2025–2026}. It is certified that all corrections suggested during internal
+assessment have been incorporated in the final report.
+
+\vspace{1.2cm}
+
+% ---------------- Signatures ----------------
+\vspace{1.5cm}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\rule{5cm}{0.4pt}\\[0.2cm]
+\textbf{Signature of the Guide}\\[0.2cm]
+Dr. Vijay Rayar\\
+Assistant Professor\\
+Dept. of ECE\\
+KLE Technological University\\
+Belagavi
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\rule{5cm}{0.4pt}\\[0.2cm]
+\textbf{Signature of the HOD}\\[0.2cm]
+Dr. D. A. Torse\\
+Professor and HOD\\
+Dept. of ECE\\
+KLE Technological University\\
+Belagavi
+\end{minipage}
+
+\vspace{2cm}
+
+\begin{center}
+\rule{5cm}{0.4pt}\\[0.2cm]
+\textbf{Signature of the Principal}\\[0.2cm]
+Dr. S. F. Patil\\
+Principal\\
+KLE Technological University\\
+Belagavi
+\end{center}
+% ------------ Declaration Page ------------
+
+\newpage
+
+\begin{center}
+\textbf{\Large DECLARATION}
+\end{center}
+
+\vspace{1cm}
+
+\large We hereby declare that the Automotive Electronics Course Project presented in this report, entitled \textbf{“RFID Based Ignition System”} submitted to KLE Technological University for the completion of the Automotive Electronics Project, is the original work carried out by us in the Department of Electronics and Communication Engineering, KLE Technological University, Dr. M. S. Sheshgiri Campus, Belagavi, under the guidance of \textbf{Dr. Vijay Rayar}, Department of Electronics and Communication Engineering.
+
+\vspace{0.4cm}
+
+We further declare that, to the best of our knowledge and belief, the work reported herein has not been submitted as part of any other project or for the award of any course, degree, or diploma at this or any other university or institution. The results presented in this report are solely the outcome of our efforts.
+
+\vspace{0.4cm}
+
+We also confirm that all the work documented in this report has been completed by us.
+
+\vspace{1.2cm}
+
+\hfill
+\begin{minipage}{0.38\textwidth}
+\raggedright
+
+\textbf{Parth Jadhav}\\
+SRN: 02FE23BEC083
+
+\textbf{Md. Danish Shamsher}\\
+SRN: 02FE23BEC112
+
+\textbf{Roopashree Pote}\\
+SRN: 02FE23BEC122
+
+\end{minipage}
+
+
+
+
+% ------------ Acknowledgment ------------
+
+\newpage
+
+\large\section*{Acknowledgment}
+
+
+
+We sincerely express our gratitude to our guide, \textbf{Dr.Vijay Rayar}, for his constant support, encouragement, and guidance throughout the course of this project. His expert advice, constructive feedback, and insightful suggestions have been invaluable in shaping the direction of our work and ensuring its successful completion. His dedication and patience inspired us to overcome challenges and strive for excellence.
+
+We would also like to acknowledge his efforts in providing us with the necessary resources and creating an environment conducive to learning and research. His motivation and constant encouragement kept us focused and confident throughout the project. We are truly thankful for his mentorship and for sharing his knowledge and experience so generously, which has greatly enriched our understanding and skills.We extend our sincere gratitude to the Head of the De-
+partment,\textbf{ Dr.D.A.Torse}, for providing a conducive learning environment and fostering a culture of academic excellence.
+
+Lastly, we express our heartfelt thanks to our Principal, \textbf{Dr.S.F.Patil}, for their unwavering support and encouragement. Your belief in our abilities has been a
+driving force behind our efforts.This project would not have been possible
+without the collective guidance and support of these esteemed individuals.
+\newpage
+\large\section*{Abstract}
+
+The RFID Based Smart Ignition System is an intelligent automotive security system developed using Raspberry Pi Pico, RC522 RFID module, and L298N motor driver. The system allows only authorized RFID tags to start the ignition motor, thereby improving vehicle security and preventing unauthorized access. When a valid RFID tag is scanned, the Raspberry Pi Pico authenticates the UID and activates the motor along with the onboard LED indication.
+
+A manual stop switch is also provided to stop the motor whenever required. Unauthorized RFID tags are denied access and the motor remains OFF. The proposed system is low-cost, reliable, and easy to implement for automotive security applications. The project demonstrates the practical application of RFID technology, embedded systems, and automotive electronics in smart vehicle ignition systems.
+
+%-------------------------------------------------
+\newpage
+\tableofcontents
+\newpage
+
+%-------------------------------------------------
+% CHAPTER 1
+%-------------------------------------------------
+
+\chapter{Introduction}
+
+Modern vehicles increasingly require intelligent security systems to prevent unauthorized access and improve user safety. Conventional key-based ignition systems can be duplicated or misused easily, leading to security risks and vehicle theft. RFID technology provides a secure and efficient solution for authentication and ignition control in automotive applications.
+
+The proposed RFID Based Smart Ignition System uses an RC522 RFID module and Raspberry Pi Pico controller to authenticate RFID tags before allowing ignition access. The RFID reader scans the tag UID and sends it to the Raspberry Pi Pico for verification. If the scanned UID matches the authorized UID stored in memory, the system activates the ignition motor through the L298N motor driver and turns ON the onboard LED as a status indication.
+
+A manual stop switch is also provided to stop the motor whenever required. Unauthorized RFID tags are denied access and the motor remains OFF. The proposed system is simple, reliable, low-cost, and suitable for modern automotive security applications. The project demonstrates the practical implementation of RFID technology, embedded systems, and automotive electronics in smart vehicle ignition systems.
+
+
+%-------------------------------------------------
+% CHAPTER 2
+%-------------------------------------------------
+
+\chapter{Literature Survey}
+
+\section{RFID Based Vehicle Security System}
+
+In the paper titled “RFID Based Vehicle Security System”, the authors proposed a smart vehicle authentication system using RFID technology to improve vehicle security and prevent unauthorized access. The system uses RFID tags and readers to authenticate users before allowing vehicle ignition. The RFID reader scans the tag and sends the UID to the embedded controller for verification. If the scanned UID matches the authorized UID stored in memory, the ignition system is activated. The proposed system demonstrated reliable authentication, fast response, and improved vehicle protection. This work highlights the importance of RFID technology in modern automotive security systems and provides valuable concepts for developing secure ignition control applications.
+
+\section{Smart Vehicle Ignition Using Embedded Systems}
+
+In the paper titled “Smart Vehicle Ignition Using Embedded Systems”, the authors developed an intelligent ignition control system using embedded technology and electronic authentication methods. The primary objective of the system is to replace conventional mechanical keys with secure electronic ignition control. The system uses a microcontroller to process authentication signals and control vehicle ignition. The implementation demonstrated secure operation, reduced chances of vehicle theft, and improved reliability. The embedded system approach provided advantages such as low cost, fast response, compact design, and easy implementation. This paper provides useful knowledge for developing smart ignition systems using embedded controllers and automotive electronics.
+
+\section{RFID Based Access Control System}
+
+In the paper titled “RFID Based Access Control System”, the authors implemented an RFID authentication system using microcontrollers and RFID readers for secure access control applications. The system allows access only to authorized users and denies unauthorized entries. The RFID reader scans the RFID tag and sends the UID information to the controller for verification. If authentication is successful, the output device is activated; otherwise, access is denied. The proposed system demonstrated reliable performance, fast operation, and improved security. This work explains the practical implementation of RFID technology and serves as an important reference for developing secure automotive ignition systems.
+
+\section{IoT Based Vehicle Monitoring and Security System}
+
+In the paper titled “IoT Based Vehicle Monitoring and Security System”, the authors proposed a smart automotive security system using embedded technology and IoT communication. The system provides vehicle monitoring, authentication, and security control through intelligent embedded hardware. Sensors and controllers continuously monitor vehicle conditions and improve overall security and user convenience. The implementation demonstrated efficient operation, real-time monitoring, and secure control mechanisms. The paper highlights the growing importance of IoT and embedded systems in modern automotive applications and provides future enhancement possibilities for smart ignition and vehicle security systems.
+
+
+%-------------------------------------------------
+% CHAPTER 3
+%-------------------------------------------------
+
+\chapter{Problem Statement and Objectives}
+
+\section{Problem Statement}
+
+Traditional vehicle ignition systems use mechanical keys which may be duplicated or accessed by unauthorized users. This creates security risks and may lead to vehicle theft. Conventional ignition systems also lack intelligent authentication and secure access control mechanisms.
+
+Therefore, an RFID-based smart ignition system is required to improve vehicle security, provide authorized access control, and prevent unauthorized vehicle operation.
+
+\section{Objectives}
+
+\begin{itemize}
+
+\item To develop an RFID-based smart ignition system
+
+\item To authenticate authorized RFID tags
+
+\item To control ignition motor using Raspberry Pi Pico
+
+\item To prevent unauthorized vehicle access
+
+\item To provide manual motor stop operation
+
+\item To understand automotive electronics concepts
+
+\end{itemize}
+
+%-------------------------------------------------
+% CHAPTER 4
+%-------------------------------------------------
+
+\chapter{System Requirements and Specifications}
+
+\section{Hardware Requirements}
+
+\begin{itemize}
+
+\item Raspberry Pi Pico H
+
+\item RC522 RFID Module
+
+\item RFID Tags
+
+\item L298N Motor Driver
+
+\item DC Motor
+
+\item Push Button Switch
+
+\item 12V Adapter
+
+\item Breadboard
+
+\item Jumper Wires
+
+\item USB Cable
+
+\end{itemize}
+
+\section{Software Requirements}
+
+\begin{itemize}
+
+\item Arduino IDE
+
+\item MFRC522 RFID Library
+
+\item Raspberry Pi Pico RP2040 Board Package
+
+\end{itemize}
+
+\section{Specifications}
+
+\begin{itemize}
+
+\item RFID-based ignition authentication
+
+\item Authorized access control
+
+\item Motor ignition control
+
+\item Manual stop switch operation
+
+\item Real-time response
+
+\item Embedded automotive security system
+
+\end{itemize}
+
+%-------------------------------------------------
+% CHAPTER 5
+%-------------------------------------------------
+
+\chapter{Tools Used}
+
+\section{MATLAB Simulink}
+
+MATLAB Simulink was used to design and simulate the RFID Based Smart Ignition System before hardware implementation. The simulation was carried out using logical blocks, switches, and control signals to verify the working of the ignition system. 
+
+\section{Arduino IDE}
+
+Arduino IDE was used for writing, compiling, and uploading the program into the Raspberry Pi Pico controller. It provided a simple platform for implementing RFID authentication and motor control logic.
+
+\section{MFRC522 RFID Library}
+
+The MFRC522 RFID library was used for interfacing the RC522 RFID module with the Raspberry Pi Pico. The library enabled RFID tag detection, UID reading, and authentication operations.
+
+\section{Raspberry Pi Pico RP2040 Board Package}
+
+The Raspberry Pi Pico RP2040 board package was used to program the Raspberry Pi Pico using Arduino IDE. It provided support for GPIO, SPI communication, and onboard peripheral control required for the project.
+
+%-------------------------------------------------
+% CHAPTER 6
+%-------------------------------------------------
+
+\chapter{System Architecture, Block Diagram and Flow Chart}
+
+\section{System Architecture}
+
+The system architecture consists of RFID input section, controller section, motor driver section, and output section.
+
+\begin{itemize}
+
+\item RC522 RFID module is used to read RFID tags
+
+\item Raspberry Pi Pico processes the RFID UID
+
+\item Authorized RFID tag activates the ignition motor
+
+\item L298N motor driver controls the DC motor
+
+\item Stop switch is used to stop the motor manually
+
+\item Onboard LED acts as the status indication output
+
+\end{itemize}
+
+\section{Block Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{BD.png}
+    \caption{Block Diagram of RFID Ignition System}
+    \label{fig:placeholder}
+\end{figure}
+The block diagram illustrates the operation of the RFID Based Smart Ignition System. The RFID tag is scanned using the RC522 RFID reader module, which sends the UID information to the Raspberry Pi Pico controller.
+
+The Raspberry Pi Pico compares the scanned UID with the authorized UID stored in memory. If the UID matches, the controller activates the onboard LED and enables the L298N motor driver to start the ignition motor. If the scanned RFID tag is unauthorized, the controller denies access and keeps the motor OFF.
+
+A stop switch is connected to the Raspberry Pi Pico and is used to stop the motor manually whenever required. The system provides secure authentication, reliable operation, and intelligent ignition control for automotive applications.
+
+\section{Flow Chart}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Screenshot 2026-06-04 001342.png}
+\caption{Flow Chart}
+\end{figure}
+The flowchart explains the complete working of the Interior Light Control System with day and night detection.
+
+Initially, the STM32 controller initializes all input and output pins. The system reads the night sensor to identify whether the surroundings are dark or bright.
+
+During daytime, automatic lighting is disabled and only the manual switch controls the LED.
+
+During nighttime, the STM32 checks both door switch and manual switch conditions. If the door opens or manual switch is ON, the LED turns ON automatically.
+
+The system continuously monitors all inputs and updates the LED output in real time.
+
+
+%-------------------------------------------------
+% CHAPTER 7
+%-------------------------------------------------
+
+\chapter{Model-Based Design}
+
+\section{Simulation and Analysis}
+
+The RFID Based Smart Ignition System was simulated using MATLAB Simulink before hardware implementation. The simulation verified RFID authentication, motor control logic, and stop switch operation.
+
+When an authorized RFID signal is detected, the motor and onboard LED turn ON. If an unauthorized RFID tag is detected or the stop switch is pressed, the motor turns OFF immediately. The simulation helped in verifying the overall working of the ignition system before hardware implementation.
+
+\vspace{0.5cm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{WhatsApp Image 2026-06-03 at 11.21.19 PM.jpeg}
+\caption{Simulation Model of RFID Based Smart Ignition System}
+\end{figure}
+
+\vspace{0.5cm}
+
+\section{Software Components Used}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+
+\begin{tabular}{|c|p{4cm}|p{5cm}|}
+\hline
+
+\textbf{Sl. No} & \centering \textbf{Block Name} & \centering \textbf{Purpose} \arraybackslash \\
+
+\hline
+
+1 & Constant Block & RFID input signal \\
+
+\hline
+
+2 & Switch Blocks & Authorized/Unauthorized RFID \\
+
+\hline
+
+3 & Stop Switch Block & Motor stop operation \\
+
+\hline
+
+4 & Sum Blocks & Combines signals \\
+
+\hline
+
+5 & Comparator Blocks & Authentication checking \\
+
+\hline
+
+6 & NOT Gate & Inverts stop condition \\
+
+\hline
+
+7 & AND Gate & Motor enable logic \\
+
+\hline
+
+8 & Display/Scope Blocks & Displays output \\
+
+\hline
+
+\end{tabular}
+
+\caption{Software Components Used in Simulink Model}
+
+\end{table}
+
+\section{Software Implementation}
+
+The software implementation was carried out using MATLAB Simulink to verify the RFID authentication and motor control logic. Logical blocks were used to process RFID signals and stop switch conditions. Based on the input conditions, the system controls the motor and onboard LED outputs successfully.
+
+
+\chapter{Hardware Implementation}
+
+\section{Hardware Components Used}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+
+\begin{tabular}{|c|p{7cm}|c|}
+\hline
+
+\textbf{Sl. No} & \textbf{Component} & \textbf{Quantity} \\
+
+\hline
+
+1 & Raspberry Pi Pico H & 1 \\
+
+\hline
+
+2 & RC522 RFID Module & 1 \\
+
+\hline
+
+3 & RFID Tags & 2 \\
+
+\hline
+
+4 & L298N Motor Driver & 1 \\
+
+\hline
+
+5 & DC Motor & 1 \\
+
+\hline
+
+6 & Push Button Switch & 1 \\
+
+\hline
+
+7 & 12V Adapter & 1 \\
+
+\hline
+
+8 & Breadboard & 1 \\
+
+\hline
+
+9 & Jumper Wires & 10--15 \\
+
+\hline
+
+\end{tabular}
+
+
+\end{table}
+
+\section{Raspberry Pi Pico Pin Connections}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+
+\begin{tabular}{|c|c|p{7cm}|}
+\hline
+
+\textbf{Pico Pin} & \textbf{Connected Device} & \textbf{Function} \\
+
+\hline
+
+GP2 & RC522 SCK & SPI Clock Signal \\
+
+\hline
+
+GP3 & RC522 MOSI & SPI Data Transmission \\
+
+\hline
+
+GP4 & RC522 MISO & SPI Data Reception \\
+
+\hline
+
+GP5 & RC522 SDA & RFID Module Select \\
+
+\hline
+
+GP6 & RC522 RST & RFID Reset Signal \\
+
+\hline
+
+GP14 & L298N ENA & Motor Enable Signal \\
+
+\hline
+
+GP15 & L298N IN1 & Motor Direction Control \\
+
+\hline
+
+GP16 & L298N IN2 & Motor Direction Control \\
+
+\hline
+
+GP17 & Push Button Switch & Motor Stop Input \\
+
+\hline
+
+3.3V & RC522 VCC & Power Supply \\
+
+\hline
+
+GND & Common Ground & Ground Connection \\
+
+\hline
+
+\end{tabular}
+
+\caption{Raspberry Pi Pico Pin Connections}
+
+\end{table}
+
+
+\vspace{0.5cm}
+
+\section{Hardware Implementation}
+
+The hardware implementation of the RFID Based Smart Ignition System was carried out using Raspberry Pi Pico, RC522 RFID module, L298N motor driver, DC motor, and stop switch. The RC522 RFID reader scans RFID tags and sends the UID information to the Raspberry Pi Pico controller through SPI communication.
+
+The Raspberry Pi Pico compares the scanned UID with the authorized UID stored in memory. If the RFID tag is authorized, the controller activates the onboard LED and enables the L298N motor driver to start the ignition motor. If an unauthorized RFID tag is detected, the motor remains OFF. The stop switch is used to stop the motor manually whenever required.
+
+The hardware setup successfully demonstrates secure RFID authentication and intelligent ignition control for automotive security applications.
+
+\vspace{0.7cm}
+
+\begin{figure}[H]
+\centering
+
+% Add your hardware image below
+\includegraphics[width=0.9\textwidth]{WhatsApp Image 2026-06-03 at 11.30.31 PM.jpeg}
+
+\caption{Hardware Implementation of RFID Based Smart Ignition System}
+
+\end{figure}
+
+\vspace{0.5cm}
+
+
+\chapter{Code}
+
+\section{Arduino Code}
+
+\begin{lstlisting}
+
+#include <SPI.h>
+#include <MFRC522.h>
+
+#define SS_PIN 5
+#define RST_PIN 6
+
+#define ENA 14
+#define IN1 15
+#define IN2 16
+
+#define STOP_SWITCH 17
+
+MFRC522 rfid(SS_PIN, RST_PIN);
+
+byte authorizedUID[4] = {99, 142, 40, 3};
+
+void setup()
+{
+Serial.begin(115200);
+
+```
+pinMode(LED_BUILTIN, OUTPUT);
+
+pinMode(ENA, OUTPUT);
+pinMode(IN1, OUTPUT);
+pinMode(IN2, OUTPUT);
+
+pinMode(STOP_SWITCH, INPUT_PULLUP);
+
+digitalWrite(ENA, LOW);
+digitalWrite(IN1, LOW);
+digitalWrite(IN2, LOW);
+
+SPI.setRX(4);
+SPI.setTX(3);
+SPI.setSCK(2);
+
+SPI.begin();
+
+rfid.PCD_Init();
+```
+
+}
+
+void loop()
+{
+if (!rfid.PICC_IsNewCardPresent())
+return;
+
+```
+if (!rfid.PICC_ReadCardSerial())
+    return;
+
+bool authorized = true;
+
+for (byte i = 0; i < 4; i++)
+{
+    if (rfid.uid.uidByte[i] != authorizedUID[i])
+    {
+        authorized = false;
+        break;
+    }
+}
+
+if (authorized)
+{
+    digitalWrite(LED_BUILTIN, HIGH);
+
+    digitalWrite(ENA, HIGH);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+
+    while (digitalRead(STOP_SWITCH) == HIGH)
+    {
+        delay(10);
+    }
+
+    digitalWrite(ENA, LOW);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+
+    digitalWrite(LED_BUILTIN, LOW);
+}
+
+else
+{
+    digitalWrite(ENA, LOW);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+
+    digitalWrite(LED_BUILTIN, LOW);
+}
+
+rfid.PICC_HaltA();
+rfid.PCD_StopCrypto1();
+
+delay(200);
+```
+
+}
+
+\end{lstlisting}
+
+
+\chapter{Applications and Future Scope}
+
+\section{Applications}
+
+\begin{itemize}
+
+\item Smart vehicle ignition systems
+
+\item Automotive security applications
+
+\item RFID-based access control systems
+
+\item Embedded automotive systems
+
+\item Intelligent vehicle authentication systems
+
+\end{itemize}
+
+\section{Future Scope}
+
+\begin{itemize}
+
+\item Integration with mobile application control
+
+\item Cloud-based vehicle authentication
+
+\item GPS tracking and monitoring
+
+\item Biometric-based vehicle security
+
+\item IoT-based smart vehicle systems
+
+\end{itemize}
+
+\chapter{Conclusion}
+
+The RFID Based Smart Ignition System was successfully designed, simulated, and implemented using Raspberry Pi Pico, RC522 RFID module, and L298N motor driver. The proposed system provides secure vehicle authentication using RFID technology and allows only authorized users to start the ignition motor.
+
+The simulation results verified the proper working of the authentication and motor control logic, while the hardware implementation demonstrated reliable real-time operation. The stop switch functionality provided additional control for stopping the motor manually whenever required.
+
+Overall, the project demonstrates a practical application of embedded systems, automotive electronics, and RFID-based security systems. The developed system is cost-effective, reliable, and suitable for modern smart vehicle security applications.
+
+\begin{thebibliography}{99}
+
+\bibitem{ref1}
+A. Kumar and R. Sharma, “RFID Based Vehicle Security System,” International Journal of Engineering Research and Technology, vol. 8, no. 4, pp. 101--105, 2020.
+
+\bibitem{ref2}
+P. Singh and M. Verma, “Smart Vehicle Ignition System Using RFID Technology,” International Journal of Innovative Research in Electronics and Communication Engineering, vol. 7, no. 3, pp. 45--50, 2021.
+
+\bibitem{ref3}
+S. Patil and K. Mehta, “RFID Based Automobile Security and Authentication System,” International Journal of Advanced Embedded Systems, vol. 9, no. 2, pp. 210--215, 2022.
+
+\bibitem{ref4}
+R. Gupta and A. Nair, “Embedded RFID Vehicle Access Control System,” International Journal of Internet of Things and Applications, vol. 5, no. 1, pp. 15--20, 2021.
+
+\bibitem{ref5}
+M. Reddy and S. Rao, “Secure Smart Ignition System for Vehicles Using RFID,” International Journal of Computer Applications, vol. 176, no. 12, pp. 30--35, 2020.
+
+\end{thebibliography}
+
+
+\end{document}
+
+

@@ -41,10 +41,3 @@ An authorized RFID tag activates the motor, while an unauthorized tag keeps the 
 ## Results
 
 The RFID authentication and motor-control logic were verified through simulation and demonstrated using the hardware implementation.
-
-## Project Structure
-
-- `src/` – Embedded source code
-- `simulation/` – MATLAB Simulink model and simulation results
-- `images/` – Hardware and simulation images
-- `docs/` – Project report
